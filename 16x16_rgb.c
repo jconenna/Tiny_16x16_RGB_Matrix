@@ -46,12 +46,12 @@ int main()
   while(1)
   {  
     /*
-	// color test
+   // color test
     A1 = A2 = 0xFF;
-	R1 = R2 = 0x00;
-	G1 = G2 = 0x00;
-	B1 = B2 = 0x00;
-	*/
+    R1 = R2 = 0x00;
+    G1 = G2 = 0x00;
+    B1 = B2 = 0x00;
+    */
 	
     // sequence of graphics and animations used on MakerFaire badge
 	
@@ -66,16 +66,15 @@ int main()
 	mage(1);
 	_delay_ms(200);
 	pac_scroll_1(1);
-    _delay_ms(1000);
-    pac_scroll_2(1);
-    _delay_ms(200);
+        _delay_ms(1000);
+        pac_scroll_2(1);
+        _delay_ms(200);
 	megaman(2);
 	bub(2);
 	link(1);
 	snake(2);
 	mr_saturn(4);
-    nyan_scroll(2);
+        nyan_scroll(2);
 	drop(150, 5, 3);
-	
    }
 }
