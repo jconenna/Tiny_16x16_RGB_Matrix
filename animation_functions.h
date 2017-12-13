@@ -83,25 +83,25 @@ void display_rb(uint16_t n)
   
          // begin with RGB output off
          R1 = 0xFF;
-		 R2 = 0xFF;
+         R2 = 0xFF;
          G1 = 0xFF;
-		 G2 = 0xFF;
+	 G2 = 0xFF;
          B1 = 0xFF;
-		 B2 = 0xFF;
+	 B2 = 0xFF;
         
-		// use i to check which column to turn on
-		if(i < 8)
-          A1 = (1 << i);
-	    else 
-		  A2 = (1 << (i-8));
+	 // use i to check which column to turn on
+	 if(i < 8)
+            A1 = (1 << i);
+	 else 
+	    A2 = (1 << (i-8));
 
         // for 8 pwm iterations
         for(uint8_t p = 0;  p < 8; p++)
         {
-		  // set output during pwm iteration based on value that determine time on vs off
+	  // set output during pwm iteration based on value that determine time on vs off
           for(uint8_t b = 0; b < 8; b++)
-		    {
-			// left row
+	  {
+	    // left row
             if(red[b] <= p)
               R1 |= (1<<b);
             else
@@ -115,8 +115,8 @@ void display_rb(uint16_t n)
             else
               B1 &= ~(1<<b);
 		    
-			// right row
-		    if(red[b+8] <= p)
+	    // right row
+	    if(red[b+8] <= p)
               R2 |= (1<<b);
             else
               R2 &= ~(1<<b);
@@ -133,7 +133,7 @@ void display_rb(uint16_t n)
 
         // turn off all column anodes
         A1 = 0x00;
-		A2 = 0x00;
+        A2 = 0x00;
 		 
       } // for i
   } // for x
@@ -147,8 +147,6 @@ void mario_walk(uint8_t n)
 	{
 		display_frame(mario_ptr, 100);
 		
-		
-		
 		for(uint8_t i = 0; i < 10; i++)
 		{
 		   display_frame(mario_w1_ptr, 5);
@@ -160,16 +158,12 @@ void mario_walk(uint8_t n)
 		
 		display_frame_mirror(mario_ptr, 100);
 		
-		
-		
 		for(uint8_t i = 0; i < 10; i++)
 		{
 		   display_frame_mirror(mario_w1_ptr, 5);
 		   display_frame_mirror(mario_w2_ptr, 5);
 		   display_frame_mirror(mario_w3_ptr, 5);
 		}
-		
-		
 		
 		display_frame_mirror(mario_ptr, 20);
 	}
@@ -342,80 +336,80 @@ void nyan_scroll(uint16_t n)
 	  
     for( uint16_t y = 77; y > 14; y--)
 	{
-		
+
 		for(uint16_t z = 0; z < 4; z++)
 			
 			{
 		
-    // for all cols
-    for(uint8_t i = 0; i <= 15; i++)
-      { 
-         // get rgb pwm components from col i
-         for(uint8_t j = 0; j <= 15; j++)
-         { 
-            color = pgm_read_byte(&nyan[y%12][(((y)-i)*16)+j]);
-            red[j] = color >> 5;
-            green[j] = (color >> 2) & 0b00000111;
-            blue[j] = (color << 1) & 0b00000111;
-         }
-  
-         // begin with RGB output off
-         R1 = 0xFF;
-		 R2 = 0xFF;
-         G1 = 0xFF;
-		 G2 = 0xFF;
-         B1 = 0xFF;
-		 B2 = 0xFF;
-        
-		// use i to check which column to turn on
-		if(i < 8)
-          A1 = (1 << i);
-	    else 
-		  A2 = (1 << (i-8));
+			    // for all cols
+			    for(uint8_t i = 0; i <= 15; i++)
+			      { 
+				 // get rgb pwm components from col i
+				 for(uint8_t j = 0; j <= 15; j++)
+				 { 
+				    color = pgm_read_byte(&nyan[y%12][(((y)-i)*16)+j]);
+				    red[j] = color >> 5;
+				    green[j] = (color >> 2) & 0b00000111;
+				    blue[j] = (color << 1) & 0b00000111;
+				 }
 
-        // for 8 pwm iterations
-        for(uint8_t p = 0;  p < 8; p++)
-        {
-		  // set output during pwm iteration based on value that determine time on vs off
-          for(uint8_t b = 0; b < 8; b++)
-		    {
-            if(red[b] <= p)
-              R1 |= (1<<b);
-            else
-              R1 &= ~(1<<b);
-            if(green[b] <= p)
-              G1 |= (1<<b);
-            else
-              G1 &= ~(1<<b);
-            if(blue[b] <= p)
-              B1 |= (1<<b);
-            else
-              B1 &= ~(1<<b);
-            }
-		  for(uint8_t b = 0; b < 8; b++)
-		    {
-            if(red[b+8] <= p)
-              R2 |= (1<<b);
-            else
-              R2 &= ~(1<<b);
-            if(green[b+8] <= p)
-              G2 |= (1<<b);
-            else
-              G2 &= ~(1<<b);
-            if(blue[b+8] <= p)
-              B2 |= (1<<b);
-            else
-              B2 &= ~(1<<b);
-            }
-          
-        }
+				 // begin with RGB output off
+				 R1 = 0xFF;
+				 R2 = 0xFF;
+				 G1 = 0xFF;
+				 G2 = 0xFF;
+				 B1 = 0xFF;
+				 B2 = 0xFF;
 
-        // turn off all column anodes
-        A1 = 0x00;
-		A2 = 0x00;
-		 
-      } // for i
-			} 
+				// use i to check which column to turn on
+				if(i < 8)
+				  A1 = (1 << i);
+				else 
+				  A2 = (1 << (i-8));
+
+				// for 8 pwm iterations
+				for(uint8_t p = 0;  p < 8; p++)
+				{
+			          // set output during pwm iteration based on value that determine time on vs off
+				  for(uint8_t b = 0; b < 8; b++)
+				   {
+				    if(red[b] <= p)
+				      R1 |= (1<<b);
+				    else
+				      R1 &= ~(1<<b);
+				    if(green[b] <= p)
+				      G1 |= (1<<b);
+				    else
+				      G1 &= ~(1<<b);
+				    if(blue[b] <= p)
+				      B1 |= (1<<b);
+				    else
+				      B1 &= ~(1<<b);
+				   }
+				  for(uint8_t b = 0; b < 8; b++)
+				   {
+				    if(red[b+8] <= p)
+				      R2 |= (1<<b);
+				    else
+				      R2 &= ~(1<<b);
+				    if(green[b+8] <= p)
+				      G2 |= (1<<b);
+				    else
+				      G2 &= ~(1<<b);
+				    if(blue[b+8] <= p)
+				      B2 |= (1<<b);
+				    else
+				      B2 &= ~(1<<b);
+				    }
+
+				}
+
+				// turn off all column anodes
+				A1 = 0x00;
+				A2 = 0x00;
+
+			      } // for i
+		} // for z
 	} // for y
   } // for x
 }
@@ -442,75 +436,75 @@ void pac_scroll_1(uint16_t n)
 			
 			{
 		
-    // for all cols
-    for(uint8_t i = 0; i <= 15; i++)
-      { 
-         // get rgb pwm components from col i
-         for(uint8_t j = 0; j <= 15; j++)
-         { 
-            color = pgm_read_byte(&pac_1[y%2][(((y)-i)*16)+j]);
-            red[j] = color >> 5;                  
-            green[j] = (color >> 2) & 0b00000111;
-            blue[j] = (color << 1) & 0b00000111;
-         }
-  
-         // begin with RGB output off
-         R1 = 0xFF;
-		 R2 = 0xFF;
-         G1 = 0xFF;
-		 G2 = 0xFF;
-         B1 = 0xFF;
-		 B2 = 0xFF;
-        
-		// use i to check which column to turn on
-		if(i < 8)
-          A1 = (1 << i);
-	    else 
-		  A2 = (1 << (i-8));
+			    // for all cols
+			    for(uint8_t i = 0; i <= 15; i++)
+			      { 
+				 // get rgb pwm components from col i
+				 for(uint8_t j = 0; j <= 15; j++)
+				 { 
+				    color = pgm_read_byte(&pac_1[y%2][(((y)-i)*16)+j]);
+				    red[j] = color >> 5;                  
+				    green[j] = (color >> 2) & 0b00000111;
+				    blue[j] = (color << 1) & 0b00000111;
+				 }
 
-        // for 8 pwm iterations
-        for(uint8_t p = 0;  p < 8; p++)
-        {
-		  // set output during pwm iteration based on value that determine time on vs off
-          for(uint8_t b = 0; b < 8; b++)
-		    {
-            if(red[b] <= p)
-              R1 |= (1<<b);
-            else
-              R1 &= ~(1<<b);
-            if(green[b] <= p)
-              G1 |= (1<<b);
-            else
-              G1 &= ~(1<<b);
-            if(blue[b] <= p)
-              B1 |= (1<<b);
-            else
-              B1 &= ~(1<<b);
-            }
-		  for(uint8_t b = 0; b < 8; b++)
-		    {
-            if(red[b+8] <= p)
-              R2 |= (1<<b);
-            else
-              R2 &= ~(1<<b);
-            if(green[b+8] <= p)
-              G2 |= (1<<b);
-            else
-              G2 &= ~(1<<b);
-            if(blue[b+8] <= p)
-              B2 |= (1<<b);
-            else
-              B2 &= ~(1<<b);
-            }
-          
-        }
+				 // begin with RGB output off
+				 R1 = 0xFF;
+				 R2 = 0xFF;
+				 G1 = 0xFF;
+				 G2 = 0xFF;
+				 B1 = 0xFF;
+				 B2 = 0xFF;
 
-        // turn off all column anodes
-        A1 = 0x00;
-		A2 = 0x00;
-		 
-      } // for i
-			} 
+				 // use i to check which column to turn on
+				 if(i < 8)
+				   A1 = (1 << i);
+				 else 
+				   A2 = (1 << (i-8));
+
+				 // for 8 pwm iterations
+				 for(uint8_t p = 0;  p < 8; p++)
+				 {
+				 // set output during pwm iteration based on value that determine time on vs off
+				  for(uint8_t b = 0; b < 8; b++)
+				   {
+				    if(red[b] <= p)
+				      R1 |= (1<<b);
+				    else
+				      R1 &= ~(1<<b);
+				    if(green[b] <= p)
+				      G1 |= (1<<b);
+				    else
+				      G1 &= ~(1<<b);
+				    if(blue[b] <= p)
+				      B1 |= (1<<b);
+				    else
+				      B1 &= ~(1<<b);
+				    }
+			           for(uint8_t b = 0; b < 8; b++)
+				    {
+				    if(red[b+8] <= p)
+				      R2 |= (1<<b);
+				    else
+				      R2 &= ~(1<<b);
+				    if(green[b+8] <= p)
+				      G2 |= (1<<b);
+				    else
+				      G2 &= ~(1<<b);
+				    if(blue[b+8] <= p)
+				      B2 |= (1<<b);
+				    else
+				      B2 &= ~(1<<b);
+				    }
+
+				}
+
+				// turn off all column anodes
+				A1 = 0x00;
+				A2 = 0x00;
+
+			    } // for i
+		} // for z
 	} // for y
   } // for x
 }
@@ -537,75 +531,75 @@ void pac_scroll_2(uint16_t n)
 			
 			{
 		
-    // for all cols
-    for(uint8_t i = 0; i <= 15; i++)
-      { 
-         // get rgb pwm components from col i
-         for(uint8_t j = 0; j <= 15; j++)
-         { 
-            color = pgm_read_byte(&pac_2[y%2][(((y)-i)*16)+j]);
-            red[j] = color >> 5;                  
-            green[j] = (color >> 2) & 0b00000111;
-            blue[j] = (color << 1) & 0b00000111;
-         }
-  
-         // begin with RGB output off
-         R1 = 0xFF;
-		 R2 = 0xFF;
-         G1 = 0xFF;
-		 G2 = 0xFF;
-         B1 = 0xFF;
-		 B2 = 0xFF;
-        
-		// use i to check which column to turn on
-		if(i < 8)
-          A1 = (1 << i);
-	    else 
-		  A2 = (1 << (i-8));
+			    // for all cols
+			    for(uint8_t i = 0; i <= 15; i++)
+			      { 
+				 // get rgb pwm components from col i
+				 for(uint8_t j = 0; j <= 15; j++)
+				 { 
+				    color = pgm_read_byte(&pac_2[y%2][(((y)-i)*16)+j]);
+				    red[j] = color >> 5;                  
+				    green[j] = (color >> 2) & 0b00000111;
+				    blue[j] = (color << 1) & 0b00000111;
+				 }
 
-        // for 8 pwm iterations
-        for(uint8_t p = 0;  p < 8; p++)
-        {
-		  // set output during pwm iteration based on value that determine time on vs off
-          for(uint8_t b = 0; b < 8; b++)
-		    {
-            if(red[b] <= p)
-              R1 |= (1<<b);
-            else
-              R1 &= ~(1<<b);
-            if(green[b] <= p)
-              G1 |= (1<<b);
-            else
-              G1 &= ~(1<<b);
-            if(blue[b] <= p)
-              B1 |= (1<<b);
-            else
-              B1 &= ~(1<<b);
-            }
-		  for(uint8_t b = 0; b < 8; b++)
-		    {
-            if(red[b+8] <= p)
-              R2 |= (1<<b);
-            else
-              R2 &= ~(1<<b);
-            if(green[b+8] <= p)
-              G2 |= (1<<b);
-            else
-              G2 &= ~(1<<b);
-            if(blue[b+8] <= p)
-              B2 |= (1<<b);
-            else
-              B2 &= ~(1<<b);
-            }
-          
-        }
+				 // begin with RGB output off
+				 R1 = 0xFF;
+				 R2 = 0xFF;
+				 G1 = 0xFF;
+				 G2 = 0xFF;
+				 B1 = 0xFF;
+				 B2 = 0xFF;
 
-        // turn off all column anodes
-        A1 = 0x00;
-		A2 = 0x00;
-		 
-      } // for i
-			} 
+				 // use i to check which column to turn on
+				 if(i < 8)
+				   A1 = (1 << i);
+				 else 
+				   A2 = (1 << (i-8));
+
+				 // for 8 pwm iterations
+				 for(uint8_t p = 0;  p < 8; p++)
+				 {
+				  // set output during pwm iteration based on value that determine time on vs off
+				  for(uint8_t b = 0; b < 8; b++)
+				   {
+				    if(red[b] <= p)
+				      R1 |= (1<<b);
+				    else
+				      R1 &= ~(1<<b);
+				    if(green[b] <= p)
+				      G1 |= (1<<b);
+				    else
+				      G1 &= ~(1<<b);
+				    if(blue[b] <= p)
+				      B1 |= (1<<b);
+				    else
+				      B1 &= ~(1<<b);
+				    }
+				   for(uint8_t b = 0; b < 8; b++)
+				    {
+				    if(red[b+8] <= p)
+				      R2 |= (1<<b);
+				    else
+				      R2 &= ~(1<<b);
+				    if(green[b+8] <= p)
+				      G2 |= (1<<b);
+				    else
+				      G2 &= ~(1<<b);
+				    if(blue[b+8] <= p)
+				      B2 |= (1<<b);
+				    else
+				      B2 &= ~(1<<b);
+				    }
+
+				}
+
+				// turn off all column anodes
+				A1 = 0x00;
+				A2 = 0x00;
+
+			    } // for i
+		} // for z
 	} // for y
   } // for x
 }
@@ -632,75 +626,75 @@ void ashpika_scroll(uint16_t n)
 			
 			{
 		
-    // for all cols
-    for(uint8_t i = 0; i <= 15; i++)
-      { 
-         // get rgb pwm components from col i
-         for(uint8_t j = 0; j <= 15; j++)
-         { 
-            color = pgm_read_byte(&ashpika[y%2][(((y)-i)*16)+j]);
-            red[j] = color >> 5;                  
-            green[j] = (color >> 2) & 0b00000111;
-            blue[j] = (color << 1) & 0b00000111;
-         }
-  
-         // begin with RGB output off
-         R1 = 0xFF;
-		 R2 = 0xFF;
-         G1 = 0xFF;
-		 G2 = 0xFF;
-         B1 = 0xFF;
-		 B2 = 0xFF;
-        
-		// use i to check which column to turn on
-		if(i < 8)
-          A1 = (1 << i);
-	    else 
-		  A2 = (1 << (i-8));
+			    // for all cols
+			    for(uint8_t i = 0; i <= 15; i++)
+			      { 
+				 // get rgb pwm components from col i
+				 for(uint8_t j = 0; j <= 15; j++)
+				 { 
+				    color = pgm_read_byte(&ashpika[y%2][(((y)-i)*16)+j]);
+				    red[j] = color >> 5;                  
+				    green[j] = (color >> 2) & 0b00000111;
+				    blue[j] = (color << 1) & 0b00000111;
+				 }
 
-        // for 8 pwm iterations
-        for(uint8_t p = 0;  p < 8; p++)
-        {
-		  // set output during pwm iteration based on value that determine time on vs off
-          for(uint8_t b = 0; b < 8; b++)
-		    {
-            if(red[b] <= p)
-              R1 |= (1<<b);
-            else
-              R1 &= ~(1<<b);
-            if(green[b] <= p)
-              G1 |= (1<<b);
-            else
-              G1 &= ~(1<<b);
-            if(blue[b] <= p)
-              B1 |= (1<<b);
-            else
-              B1 &= ~(1<<b);
-            }
-		  for(uint8_t b = 0; b < 8; b++)
-		    {
-            if(red[b+8] <= p)
-              R2 |= (1<<b);
-            else
-              R2 &= ~(1<<b);
-            if(green[b+8] <= p)
-              G2 |= (1<<b);
-            else
-              G2 &= ~(1<<b);
-            if(blue[b+8] <= p)
-              B2 |= (1<<b);
-            else
-              B2 &= ~(1<<b);
-            }
-          
-        }
+				 // begin with RGB output off
+				 R1 = 0xFF;
+				 R2 = 0xFF;
+				 G1 = 0xFF;
+				 G2 = 0xFF;
+				 B1 = 0xFF;
+				 B2 = 0xFF;
 
-        // turn off all column anodes
-        A1 = 0x00;
-		A2 = 0x00;
+				 // use i to check which column to turn on
+				 if(i < 8)
+				   A1 = (1 << i);
+				 else 
+				   A2 = (1 << (i-8));
+
+				 // for 8 pwm iterations
+				 for(uint8_t p = 0;  p < 8; p++)
+				 {
+				  // set output during pwm iteration based on value that determine time on vs off
+				  for(uint8_t b = 0; b < 8; b++)
+					    {
+				    if(red[b] <= p)
+				      R1 |= (1<<b);
+				    else
+				      R1 &= ~(1<<b);
+				    if(green[b] <= p)
+				      G1 |= (1<<b);
+				    else
+				      G1 &= ~(1<<b);
+				    if(blue[b] <= p)
+				      B1 |= (1<<b);
+				    else
+				      B1 &= ~(1<<b);
+				    }
+				   for(uint8_t b = 0; b < 8; b++)
+				    {
+				    if(red[b+8] <= p)
+				      R2 |= (1<<b);
+				    else
+				      R2 &= ~(1<<b);
+				    if(green[b+8] <= p)
+				      G2 |= (1<<b);
+				    else
+				      G2 &= ~(1<<b);
+				    if(blue[b+8] <= p)
+				      B2 |= (1<<b);
+				    else
+				      B2 &= ~(1<<b);
+				    }
+
+				}
+
+				// turn off all column anodes
+				A1 = 0x00;
+				A2 = 0x00;
 		 
-      } // for i
-			} 
+			    } // for i
+		} // for z
 	} // for y
   } // for x
 }
@@ -730,7 +724,7 @@ void drop(uint16_t iterations, uint8_t num_drops, uint8_t del)
 	  // clear frame
 	  clear_drop();
 	  
-      // expand of reset drops	  
+          // expand of reset drops	  
 	  for(uint8_t i = 0; i < num_drops; i++)
 		  update_drop(x[i], y[i], n[i], c[i]); 
 	  
@@ -741,7 +735,7 @@ void drop(uint16_t iterations, uint8_t num_drops, uint8_t del)
 	  for(uint8_t i = 0; i < num_drops; i++)
 	  {
 		  if(n[i] != 22)
-			  n[i]++;
+		    n[i]++;
 	  else
 	      {
 		  n[i] = 0;
@@ -795,24 +789,24 @@ void display_drop(uint16_t n)
   
          // begin with RGB output off
          R1 = 0xFF;
-		 R2 = 0xFF;
+	 R2 = 0xFF;
          G1 = 0xFF;
-		 G2 = 0xFF;
+	 G2 = 0xFF;
          B1 = 0xFF;
-		 B2 = 0xFF;
+	 B2 = 0xFF;
         
-		// use i to check which column to turn on
-		if(i < 8)
-          A1 = (1 << i);
-	    else 
-		  A2 = (1 << (i-8));
+	 // use i to check which column to turn on
+	 if(i < 8)
+            A1 = (1 << i);
+	 else 
+	    A2 = (1 << (i-8));
 
         // for 8 pwm iterations
         for(uint8_t p = 0;  p < 8; p++)
         {
-		  // set output during pwm iteration based on value that determine time on vs off
+	  // set output during pwm iteration based on value that determine time on vs off
           for(uint8_t b = 0; b < 8; b++)
-		    {
+	   {
             if(red[b] <= p)
               R1 |= (1<<b);
             else
@@ -826,8 +820,8 @@ void display_drop(uint16_t n)
             else
               B1 &= ~(1<<b);
             }
-		  for(uint8_t b = 0; b < 8; b++)
-		    {
+	   for(uint8_t b = 0; b < 8; b++)
+	    {
             if(red[b+8] <= p)
               R2 |= (1<<b);
             else
@@ -846,7 +840,7 @@ void display_drop(uint16_t n)
 
         // turn off all column anodes
         A1 = 0x00;
-		A2 = 0x00;
+	A2 = 0x00;
 		 
       } // for i
   } // for x
