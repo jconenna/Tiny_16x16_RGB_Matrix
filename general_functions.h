@@ -30,24 +30,24 @@ void display_frame(const uint8_t *frame, uint16_t n)
   
          // begin with RGB output off
          R1 = 0xFF;
-		 R2 = 0xFF;
+	 R2 = 0xFF;
          G1 = 0xFF;
-		 G2 = 0xFF;
+	 G2 = 0xFF;
          B1 = 0xFF;
-		 B2 = 0xFF;
+	 B2 = 0xFF;
         
-		// use i to check which column to turn on
-		if(i < 8)
-          A1 = (1 << i);
-	    else 
-		  A2 = (1 << (i-8));
+	 // use i to check which column to turn on
+	 if(i < 8)
+           A1 = (1 << i);
+	 else 
+           A2 = (1 << (i-8));
 
-        // for 8 pwm iterations
-        for(uint8_t p = 0;  p < 8; p++)
-        {
-		  // set output during pwm iteration based on value that determine time on vs off
+         // for 8 pwm iterations
+         for(uint8_t p = 0;  p < 8; p++)
+         {
+	  // set output during pwm iteration based on value that determine time on vs off
           for(uint8_t b = 0; b < 8; b++)
-		    {
+	   {
             if(red[b] <= p)
               R1 |= (1<<b);
             else
@@ -61,8 +61,8 @@ void display_frame(const uint8_t *frame, uint16_t n)
             else
               B1 &= ~(1<<b);
             }
-		  for(uint8_t b = 0; b < 8; b++)
-		    {
+	   for(uint8_t b = 0; b < 8; b++)
+	    {
             if(red[b+8] <= p)
               R2 |= (1<<b);
             else
@@ -81,7 +81,7 @@ void display_frame(const uint8_t *frame, uint16_t n)
 
         // turn off all column anodes
         A1 = 0x00;
-		A2 = 0x00;
+	A2 = 0x00;
 		 
       } // for i
   } // for x
@@ -118,24 +118,24 @@ void display_frame_mirror(const uint8_t *frame, uint16_t n)
   
          // begin with RGB output off
          R1 = 0xFF;
-		 R2 = 0xFF;
+	 R2 = 0xFF;
          G1 = 0xFF;
-		 G2 = 0xFF;
+	 G2 = 0xFF;
          B1 = 0xFF;
-		 B2 = 0xFF;
+	 B2 = 0xFF;
         
-		// use i to check which column to turn on
-		if(i < 8)
-          A2 = (1 << (7-i));
-	    else 
-		  A1 = (1 << (7 - (i-8)));
+         // use i to check which column to turn on
+	 if(i < 8)
+           A2 = (1 << (7-i));
+	 else 
+	   A1 = (1 << (7 - (i-8)));
 
         // for 8 pwm iterations
         for(uint8_t p = 0;  p < 8; p++)
         {
-		  // set output during pwm iteration based on value that determine time on vs off
+	  // set output during pwm iteration based on value that determine time on vs off
           for(uint8_t b = 0; b < 8; b++)
-		    {
+	   {
             if(red[b] <= p)
               R1 |= (1<<b);
             else
@@ -149,8 +149,8 @@ void display_frame_mirror(const uint8_t *frame, uint16_t n)
             else
               B1 &= ~(1<<b);
             }
-		  for(uint8_t b = 0; b < 8; b++)
-		    {
+           for(uint8_t b = 0; b < 8; b++)
+	    {
             if(red[b+8] <= p)
               R2 |= (1<<b);
             else
@@ -169,7 +169,7 @@ void display_frame_mirror(const uint8_t *frame, uint16_t n)
 
         // turn off all column anodes
         A1 = 0x00;
-		A2 = 0x00;
+	A2 = 0x00;
 		 
       } // for i
   } // for x
