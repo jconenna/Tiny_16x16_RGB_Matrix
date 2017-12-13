@@ -1,0 +1,17 @@
+Instructions to compile and flash code:
+
+Install WinAVR.
+
+This installs cygwin which makes command line follow linux commands.
+
+win-r cmd enter
+
+now in command line, 'cd' to directory with source code.
+
+'cd ..' goes back one directory
+
+'ls' lists current directory
+
+in the folder, use 'make' to compile, and 'make flash' to compile and flash the code.
+
+if it says it can't find usbtiny, try to install these drivers: https://learn.adafruit.com/usbtinyisp/download

@@ -1,0 +1,4 @@
+Put 16x16 sprites in sprites_2_array folder.
+Open convert_sprite.exe.
+type in sprite file name without .png, press enter. 
+Success is declared, or the window will dissapear and you will be confused. You mistyped or the file isn't in there.
