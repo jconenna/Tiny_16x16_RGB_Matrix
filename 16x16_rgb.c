@@ -55,7 +55,7 @@ int main()
    
     // sequence of graphics and animations used on MakerFaire badge
    
-    for(uint8_t i = 0; i < 20; i++)
+    for(uint8_t i = 0; i < 100; i++)
       rainbow_transition(1);
    
    kirby_wave(3);
