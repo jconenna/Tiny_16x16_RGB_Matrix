@@ -6,54 +6,53 @@ void rainbow_transition(uint8_t rate)
   uint8_t type[256];
 
   for(uint16_t i = 0; i < 256; i++)
-    {
-      type[i] = 0;
+  {
+    type[i] = 0;
 
-      // red
-      if(rainbow[i] & (1 << 7) | rainbow[i] & (1 << 6) | rainbow[i] & (1 << 5))
-        type[i] |= (1 << 2);
+    // red
+    if(rainbow[i] & (1 << 7) | rainbow[i] & (1 << 6) | rainbow[i] & (1 << 5))
+      type[i] |= (1 << 2);
 
-      // green
-      if(rainbow[i] & (1 << 4) | rainbow[i] & (1 << 3) | rainbow[i] & (1 << 2))
-        type[i] |= (1 << 1);
+    // green
+    if(rainbow[i] & (1 << 4) | rainbow[i] & (1 << 3) | rainbow[i] & (1 << 2))
+      type[i] |= (1 << 1);
 
-      // blue
-      // green
-      if(rainbow[i] & (1 << 1) | rainbow[i] & (1))
-        type[i] |= 1;
-     }
+    // blue
+    // green
+    if(rainbow[i] & (1 << 1) | rainbow[i] & (1))
+      type[i] |= 1;
+   }
 
-  for(uint8_t i = 0; i < 8; i++)
-    {
-      for(uint16_t j = 0; j < 256; j++)
-        {
-
-        // blue to cyan
-        if(type[j] == 1)
-          rainbow[j] = ((i & (1<<2)) << 2) | ((i & (1<<1)) << 2) | ((i & (1)) << 2) | 3;
+   for(uint8_t i = 0; i < 8; i++)
+     {
+       for(uint16_t j = 0; j < 256; j++)
+       {
+         // blue to cyan
+         if(type[j] == 1)
+           rainbow[j] = ((i & (1<<2)) << 2) | ((i & (1<<1)) << 2) | ((i & (1)) << 2) | 3;
       
-        //green to yellow
-        if(type[j] == 2)
-          rainbow[j] = ((i & (1<<2)) << 5) | ((i & (1<<1)) << 5) | ((i & (1)) << 5) | 28;
+         //green to yellow
+         if(type[j] == 2)
+           rainbow[j] = ((i & (1<<2)) << 5) | ((i & (1<<1)) << 5) | ((i & (1)) << 5) | 28;
 
-        //cyan to green
-        if(type[j] == 3)
-          rainbow[j] = (((7-i)&(1<<2)) >> 1) | (((7-i)&(1<<1)) >> 1) | 28;
+         //cyan to green
+         if(type[j] == 3)
+           rainbow[j] = (((7-i)&(1<<2)) >> 1) | (((7-i)&(1<<1)) >> 1) | 28;
 
-        //red to magenta
-        if(type[j] == 4)
-          rainbow[j] = ((i&(1<<2)) >> 1) | ((i&(1<<1)) >> 1) | 224;
+         //red to magenta
+         if(type[j] == 4)
+           rainbow[j] = ((i&(1<<2)) >> 1) | ((i&(1<<1)) >> 1) | 224;
 
-        //magenta to blue
-        if(type[j] == 5)
-          rainbow[j] = (((7-i) & (1<<2)) << 5) | (((7-i) & (1<<1)) << 5) | (((7-i) & (1)) << 5) | 3;
+         //magenta to blue
+         if(type[j] == 5)
+           rainbow[j] = (((7-i) & (1<<2)) << 5) | (((7-i) & (1<<1)) << 5) | (((7-i) & (1)) << 5) | 3;
 
-        //yellow to red
-        if(type[j] == 6)
-          rainbow[j] = (((7-i) & (1<<2)) << 2) | (((7-i) & (1<<1)) << 2) | (((7-i) & (1)) << 2) | 224;
-        }
-      display_rb(rate);
-    }
+         //yellow to red
+         if(type[j] == 6)
+           rainbow[j] = (((7-i) & (1<<2)) << 2) | (((7-i) & (1<<1)) << 2) | (((7-i) & (1)) << 2) | 224;
+       }
+     display_rb(rate);
+  }
 }
 
 // displays current rainbow transition frame on display for n cycles 
