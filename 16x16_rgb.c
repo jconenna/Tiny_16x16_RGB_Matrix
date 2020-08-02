@@ -52,29 +52,29 @@ int main()
     G1 = G2 = 0x00;
     B1 = B2 = 0x00;
     */
-	
+   
     // sequence of graphics and animations used on MakerFaire badge
-	
+   
     for(uint8_t i = 0; i < 20; i++)
-		rainbow_transition(1);
-	
-	kirby_wave(3);
-	ashpika_scroll(1);
-	mario_walk(1);
-	ghosty(5);
-	sonic(2);
-	mage(1);
-	_delay_ms(200);
-	pac_scroll_1(1);
+      rainbow_transition(1);
+   
+   kirby_wave(3);
+   ashpika_scroll(1);
+   mario_walk(1);
+   ghosty(5);
+   sonic(2);
+   mage(1);
+   _delay_ms(200);
+   pac_scroll_1(1);
    _delay_ms(1000);
    pac_scroll_2(1);
    _delay_ms(200);
-	megaman(2);
-	bub(2);
-	link(1);
-	snake(2);
-	mr_saturn(4);
+   megaman(2);
+   bub(2);
+   link(1);
+   snake(2);
+   mr_saturn(4);
    nyan_scroll(2);
-	drop(150, 5, 15);
+   drop(150, 5, 15);
    }
 }
