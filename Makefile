@@ -4,7 +4,7 @@ PROGRAMMER  = -c usbtiny
 OBJECTS     = 16x16_rgb.o
 FUSES       = -U lfuse:w:0xc2:m -U hfuse:w:0x99:m -U efuse:w:0xff:m 
 AVRDUDE     = avrdude $(PROGRAMMER) -p $(DEVICE)
-COMPILE     = avr-gcc -Wall -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) -std=c99
+COMPILE     = avr-gcc -Wall -O3 -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) -std=c99
 
 all:	16x16_rgb.hex
 

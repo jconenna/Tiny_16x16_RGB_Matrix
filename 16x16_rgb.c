@@ -66,15 +66,15 @@ int main()
 	mage(1);
 	_delay_ms(200);
 	pac_scroll_1(1);
-        _delay_ms(1000);
-        pac_scroll_2(1);
-        _delay_ms(200);
+   _delay_ms(1000);
+   pac_scroll_2(1);
+   _delay_ms(200);
 	megaman(2);
 	bub(2);
 	link(1);
 	snake(2);
 	mr_saturn(4);
-        nyan_scroll(2);
-	drop(150, 5, 3);
+   nyan_scroll(2);
+	drop(150, 5, 15);
    }
 }
